@@ -1,0 +1,17 @@
+#include<stdio.h>
+#include<string.h>
+#include<MLV/MLV_all.h>
+int main()
+{
+  char *N;
+  int n;
+  MLV_Event event;
+  MLV_create_window("fenetre exo5","iconeexo5",600,600);
+  MLV_wait_input_box(20,20,400,200,MLV_COLOR_MAGENTA,MLV_COLOR_MAGENTA,MLV_COLOR_MAGENTA,"le nombre de sommets",&N);
+  n=atoi(N);
+  MLV_draw_polygon(XXXXX,YYYYY,n,MLV_COLOR_GREEN);
+  if (event ==MLV_MOUSE_BUTTON)
+    {
+      X=mouse_x;
+      Y=mouse_y;}
+  

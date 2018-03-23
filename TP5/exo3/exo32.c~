@@ -1,0 +1,13 @@
+#include<stdio.h>
+
+int longueur_chaine(char s[]){
+  int i=0;
+  while (s[i]!='\0'){
+    i++;
+  }
+  return i;
+  
+int main (){
+  char s[5]=" helloworld";
+  longueur_chaine(s[5]);
+}

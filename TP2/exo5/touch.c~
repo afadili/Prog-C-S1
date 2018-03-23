@@ -1,0 +1,11 @@
+#include<stdio.h>
+int main(){
+  int a,b,c;
+  printf("entrer deux valeurs : \n");
+  scanf("%d\n%d\n",&a,&b);
+  c=a;
+  a=b;
+  b=c;
+  printf("les deux valeurs sont : \n %d %d",a,b);
+  return 0;
+}

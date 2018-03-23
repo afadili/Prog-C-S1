@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<MLV/MLV_all.h>
+
+int main(int argc, char *argv[])
+{
+  int i,j;
+  int x,y;
+  MLV_create_window("fenetre","icone fenetre",540,360);
+  for (i=0;i<540;i=i+30)
+    {
+    for(j=0;j<360;j=j+30)
+      {
+      MLV_draw_rectangle(i,j,30,30,MLV_COLOR_GREEN);
+      MLV_actualise_window();
+      }
+    }
+  MLV_wait_seconds(60);
+  MLV_free_window();
+  MLV_Event event;
+  event=MLV_get_event(NULL,NULL,NULL,NULL,NULL,&x,&y,NULL,NULL);
+  if ( event==MLV_MOUSE_BUTTON)
+    {
+      MLV_draw_text(x,y,"(%d,%d)",MLV_COLOR_PINK,x,y);
+    }
+  MLV_actualise_window();
+}
+
+  

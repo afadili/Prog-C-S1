@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<string.h>
+#include<MLV/MLV_all.h>
+int main ()
+{
+  char *x;
+  unsigned X;
+  unsigned Y;
+  char *I;
+  char *y;
+  char *R;
+  int rayon;
+  int epaisseur;
+  int i;
+  char *color;
+  MLV_create_window("fenetre exo3","iconeexo3",400,400);
+  MLV_wait_input_box(10,10,350,100,MLV_COLOR_PINK,MLV_COLOR_PINK,MLV_COLOR_BLACK,"veuillez entrer les coordonnées de x : ",&x);
+  MLV_wait_input_box(10,10,350,100,MLV_COLOR_PINK,MLV_COLOR_PINK,MLV_COLOR_BLACK,"veuillez entrer les coordonnées de y : ",&y);
+  MLV_wait_input_box(10,10,350,100,MLV_COLOR_PINK,MLV_COLOR_PINK,MLV_COLOR_BLACK,"veuillez entrer le rayon  : ",&R);
+  MLV_wait_input_box(10,10,350,100,MLV_COLOR_PINK,MLV_COLOR_PINK,MLV_COLOR_BLACK,"veuillez entrer l'epaisseur du cercle  : ",&I);
+  MLV_wait_input_box(10,10,350,100,MLV_COLOR_PINK,MLV_COLOR_PINK,MLV_COLOR_BLACK,"veuillez entrer l'epaisseur du cercle la couleur  : ",&color);
+  epaisseur=atoi(I);
+  X=atoi(x);
+  Y=atoi(y);
+  rayon=atoi(R);
+  for(i=0;i<epaisseur;i++)
+    {
+      MLV_draw_circle(X,Y,rayon++,MLV_COLOR_PINK);
+    }
+  MLV_actualise_window();
+  MLV_wait_seconds(5);
+  strcat("MLV_COLOR_",color);
+  MLV_draw_text(100,100,color,MLV_COLOR_WHITE);
+  MLV_actualise_window();
+  MLV_wait_seconds(10);
+  MLV_free_window();
+}
+  

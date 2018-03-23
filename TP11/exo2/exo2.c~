@@ -1,0 +1,14 @@
+#include<stdio.h>
+
+
+int main()
+{
+  int **tab;
+  int taille;
+  printf("veuillez entrer la taille de tab :\n");
+  scanf("%d",&taille);
+  *tmp=malloc(taille);
+  if (tab==NULL)
+    return 0;
+  *tmp=*tab;
+}

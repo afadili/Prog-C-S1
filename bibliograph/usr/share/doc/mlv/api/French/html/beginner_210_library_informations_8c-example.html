@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This file is part of the MLV Library.
+Copyright (C) 2012 Adrien Boussicault, Marc Zipstein
+This Library is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+This Library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this Library.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>MLV-2.0.2</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="header">
+	<div class="headertitle">
+		<h1>Documentation de la bibliothèque MLV-2.0.2</h1>
+	</div>
+</div>
+<div class="tabs2">
+	<ul class="tablist">
+		<li><a href="index.html"><span>Presentation</span></a></li>
+		<li><a href="download.html"><span>Téléchargement</span></a></li>
+		<li><a href="installation.html"><span>Installation</span></a></li>
+		<li><a href="compilation.html"><span>Compilation</span></a></li>
+		<li><a href="examples.html"><span>Exemples</span></a></li>
+		<li><a href="files.html"><span>API</span></a></li>
+		<li><a href="globals_func.html"><span>Liste des fonctions</span></a></li>
+		<li><a href="bug.html"><span>bogues</span></a></li>
+        <li><a href="faq.html"><span>FAQ</span></a></li>
+		<li><a href="contact_auteur.html"><span>contacts</span></a></li>
+	</ul>
+</div>
+<!-- Généré par Doxygen 1.8.8 -->
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">beginner/10_library_informations.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<p>Ce programme a pour but de presenter les fonctions permettant de récuperer des informations concernant la bibliothèque.</p>
+<p>Ce programme présente aussi rapidement la licence sous laquelle est distribuée la bibliothèque MLV.</p>
+<div class="fragment"><div class="line"></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="MLV__all_8h.html">MLV/MLV_all.h</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"></div>
+<div class="line"><span class="comment">//</span></div>
+<div class="line"><span class="comment">// Attention ! </span></div>
+<div class="line"><span class="comment">// Pour pouvoir compiler ce programme sous windows et sous macintosh,</span></div>
+<div class="line"><span class="comment">// il faut, pour la déclaration du main, respecter strictement la syntaxe</span></div>
+<div class="line"><span class="comment">// suivante :</span></div>
+<div class="line"><span class="comment">//</span></div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]){</div>
+<div class="line">        <span class="comment">//</span></div>
+<div class="line">        <span class="comment">// Déclaration et initialisation de la variable qui codera</span></div>
+<div class="line">        <span class="comment">// la taille entre deux lignes dans un texte</span></div>
+<div class="line">        <span class="comment">//</span></div>
+<div class="line">        <span class="keywordtype">int</span> taille_interlinge = 9;</div>
+<div class="line"></div>
+<div class="line">        <span class="comment">//</span></div>
+<div class="line">        <span class="comment">// Créé et affiche la fenêtre</span></div>
+<div class="line">        <span class="comment">//</span></div>
+<div class="line">        <a name="a0"></a><a class="code" href="MLV__window_8h_a5f4ed8b1e1ac8ee176d08c3fc5dea1f1.html#a5f4ed8b1e1ac8ee176d08c3fc5dea1f1">MLV_create_window</a>(</div>
+<div class="line">                <span class="stringliteral">&quot;beginner - 10 - library informations&quot;</span>, <span class="stringliteral">&quot;library informations&quot;</span>, 640, 480</div>
+<div class="line">        );</div>
+<div class="line"></div>
+<div class="line">        <span class="comment">//</span></div>
+<div class="line">        <span class="comment">// Affiche quelques informations concernant la librairie MLV</span></div>
+<div class="line">        <span class="comment">//</span></div>
+<div class="line">        <a name="a1"></a><a class="code" href="MLV__text_8h_aee3fc4400ecf393501723aa5db89353b.html#aee3fc4400ecf393501723aa5db89353b">MLV_draw_adapted_text_box</a>(</div>
+<div class="line">                10,10,</div>
+<div class="line">                <span class="stringliteral">&quot;Nom de la bibliothèque : %s     Depôt : %s\nVersion : %s  ( révision : %s  )\nLicence : %s\nAddresse internet où se trouve le code source de la bibliothèque :\n    %s\n\nCette bibliothèque est distibuée sous le terme de la licence %s. Vous trouverez une\ncopie de cette licence dans le fichier gpl.txt du répertoire courant.\n\nLa licence %s  garantit à l&#39;utilisateur les droits suivants :\n    1. La liberté d&#39;exécuter le logiciel, pour n&#39;importe quel usage ;\n    2. La liberté d&#39;étudier le fonctionnement d&#39;un programme et de l&#39;adapter \n        à ses besoins, ce qui passe par l&#39;accès aux codes sources ;\n    3. La liberté de redistribuer des copies ;\n    4. La liberté de rendre publiques des versions modifiées pour en faire \n       bénéficier la communauté.\n\nLa licence GPL impose aussi quelques devoirs. Par exemple, si vous distribuez un\n programme utilisant MLV, vous devez le faire sous une licence compatible GPL.&quot;</span>,</div>
+<div class="line">                taille_interlinge,</div>
+<div class="line">                <a name="a2"></a><a class="code" href="MLV__color_8h_a29fe7690a40e2aece216152e9e593763.html#a29fe7690a40e2aece216152e9e593763">MLV_COLOR_BLACK</a>, <a name="a3"></a><a class="code" href="MLV__color_8h_a15c3868b2cc0879653b2273278d4d9b6.html#a15c3868b2cc0879653b2273278d4d9b6">MLV_COLOR_GREEN</a>, <a class="code" href="MLV__color_8h_a29fe7690a40e2aece216152e9e593763.html#a29fe7690a40e2aece216152e9e593763">MLV_COLOR_BLACK</a>,</div>
+<div class="line">                <a name="a4"></a><a class="code" href="MLV__text_8h_a7cba3ac75855cbcbf11d35a83e819377.html#a7cba3ac75855cbcbf11d35a83e819377abfbe69089fcbe80dadbec634d7db191d">MLV_TEXT_LEFT</a>,</div>
+<div class="line">                <a name="a5"></a><a class="code" href="MLV__information_8h_ac690762b0a97029308ece67317ca2590.html#ac690762b0a97029308ece67317ca2590">MLV_get_package_name</a>(),</div>
+<div class="line">                <a name="a6"></a><a class="code" href="MLV__information_8h_a650c7bcd94bf113f80d07e51e19f33ad.html#a650c7bcd94bf113f80d07e51e19f33ad">MLV_get_repository</a>( ),</div>
+<div class="line">                <a name="a7"></a><a class="code" href="MLV__information_8h_a4ba0ece548fea65cd3f8fb5c88932cc2.html#a4ba0ece548fea65cd3f8fb5c88932cc2">MLV_get_version</a>(),</div>
+<div class="line">                <a name="a8"></a><a class="code" href="MLV__information_8h_a69194f9b981cd60f2b9408b952af2d98.html#a69194f9b981cd60f2b9408b952af2d98">MLV_get_revision_of_revision_control_software</a>( ),</div>
+<div class="line">                <a name="a9"></a><a class="code" href="MLV__information_8h_a8d727ace0e903348681854c7299fb78d.html#a8d727ace0e903348681854c7299fb78d">MLV_get_licence</a>(),</div>
+<div class="line">                <a name="a10"></a><a class="code" href="MLV__information_8h_a4b612415f06970b8e3aa544f7833305e.html#a4b612415f06970b8e3aa544f7833305e">MLV_get_web_distribution</a>(),</div>
+<div class="line">                <a class="code" href="MLV__information_8h_a8d727ace0e903348681854c7299fb78d.html#a8d727ace0e903348681854c7299fb78d">MLV_get_licence</a>(),</div>
+<div class="line">                <a class="code" href="MLV__information_8h_a8d727ace0e903348681854c7299fb78d.html#a8d727ace0e903348681854c7299fb78d">MLV_get_licence</a>()</div>
+<div class="line">        );</div>
+<div class="line"></div>
+<div class="line">        <span class="comment">//</span></div>
+<div class="line">        <span class="comment">// Met à jour de l&#39;affichage</span></div>
+<div class="line">        <span class="comment">//</span></div>
+<div class="line">        <a name="a11"></a><a class="code" href="MLV__window_8h_a989a543c725ea5278334e5642c53c837.html#a989a543c725ea5278334e5642c53c837">MLV_actualise_window</a>();</div>
+<div class="line">        </div>
+<div class="line">        <span class="comment">//</span></div>
+<div class="line">        <span class="comment">// Attends que l&#39;utilisateur appuye sur la touche echap pour quitter.</span></div>
+<div class="line">        <span class="comment">//</span></div>
+<div class="line">        <a class="code" href="MLV__keyboard_8h.html#a216eb844b6a872c8cdf1a2923e7b72b3">MLV_Keyboard_button</a> touche=MLV_KEYBOARD_NONE;</div>
+<div class="line">        <span class="keywordflow">while</span>( touche != MLV_KEYBOARD_ESCAPE ){</div>
+<div class="line">                <a name="a12"></a><a class="code" href="MLV__keyboard_8h_a8ce4ab3f9c39d780ebbc68a6bd8c83c0.html#a8ce4ab3f9c39d780ebbc68a6bd8c83c0">MLV_wait_keyboard</a>(&amp;touche,NULL,NULL);</div>
+<div class="line">        }</div>
+<div class="line"></div>
+<div class="line">        <span class="comment">//</span></div>
+<div class="line">        <span class="comment">// Ferme la fenêtre</span></div>
+<div class="line">        <span class="comment">//</span></div>
+<div class="line">        <a name="a13"></a><a class="code" href="MLV__window_8h_a139eec0093ed1ced7f49b0f35a5b65e5.html#a139eec0093ed1ced7f49b0f35a5b65e5">MLV_free_window</a>();</div>
+<div class="line">        <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="comment">/*</span></div>
+<div class="line"><span class="comment"> *   This file is part of the MLV Library.</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> *   Copyright (C) 2010,2011,2012,2013 Adrien Boussicault, Marc Zipstein</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> *    This Library is free software: you can redistribute it and/or modify</span></div>
+<div class="line"><span class="comment"> *    it under the terms of the GNU General Public License as published by</span></div>
+<div class="line"><span class="comment"> *    the Free Software Foundation, either version 3 of the License, or</span></div>
+<div class="line"><span class="comment"> *    (at your option) any later version.</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> *    This Library is distributed in the hope that it will be useful,</span></div>
+<div class="line"><span class="comment"> *    but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><span class="comment"> *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><span class="comment"> *    GNU General Public License for more details.</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> *    You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><span class="comment"> *    along with this Library.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+</div><!-- fragment --> </div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Vendredi 11 Septembre 2015 09:24:29 pour MLV-2.0.2 par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.8
+</small></address>
+</body>
+</html>

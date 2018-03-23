@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include<MLV/MLV_all.h>
+int main()
+{
+  int x;
+  int y;
+  int width;
+  int height;
+  char *w;
+  char *h;
+  MLV_wait_input_box(10,10,350,100,MLV_COLOR_PINK,MLV_COLOR_PINK,MLV_COLOR_BLACK,"veuillez entrer la largeur de la fenetre : ",&w);
+  MLV_wait_input_box(10,10,350,100,MLV_COLOR_PINK,MLV_COLOR_PINK,MLV_COLOR_BLACK,"veuillez entrer la hauteur de la fenetre : ",&h);
+  width=atoi(w);
+  height=atoi(h);
+  MLV_create_window("fenetre exo2","iconeexo2",width,height);
+  MLV_actualise_window();
+  x=width/2;
+  y=height/2;
+  MLV_draw_ellipse(x,y,width/2,height/2,MLV_COLOR_WHITE);
+  MLV_actualise_window();
+  MLV_wait_seconds(20);
+  MLV_free_window();
+}

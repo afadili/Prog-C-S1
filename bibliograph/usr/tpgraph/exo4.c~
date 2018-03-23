@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<MLV/MLV_all.h>
+int main ()
+{
+  char *width;
+  char *height;
+  char *ray;
+  int W;
+  int H;
+  int x;
+  int y;
+  int R;
+  int i;
+  MLV_create("fenetre exo4","iconeexo4",500,500);
+  MLV_wait_input_box(20,20,350,100,MLV_COLOR_GREEN,MLV_COLOR_BLUE,"largeur fenetre : ",&width);
+  MLV_wait_input_box(20,20,350,100,MLV_COLOR_GREEN,MLV_COLOR_BLUE,"hauteur fenetre : ",&height);
+  MLV_wait_input_box(20,20,350,100,MLV_COLOR_GREEN,MLV_COLOR_BLUE,"rayon : ",&ray);
+  W=atoi(width);
+  H=atoi(height);
+  x=width/2;
+  y=height/2;
+  R=atoi(ray);
+  if (W<H){
+  for(i=R;i<W;i++)
+    {
+      MLV_draw_circle(x,y,R,MLV_COLOR_BLUE);
+    }
+  }
+  else
+    {
+   for(i=R;i<H;i++)
+    {
+      MLV_draw_circle(x,y,R,MLV_COLOR_BLUE);
+    }
+    }
+}

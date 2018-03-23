@@ -1,0 +1,98 @@
+#include<stdio.h>
+#include<MLV/MLV_all.h>
+
+ int width=540;
+ int height=360;
+void Grille()
+{
+   int i,j;
+   for (i=0;i<width;i=i+30)
+    {
+    for(j=0;j<height;j=j+30)
+      {
+      MLV_draw_rectangle(i,j,30,30,MLV_COLOR_YELLOW1);
+     
+      }
+    }
+}
+  
+
+int main()
+{
+ 
+  MLV_Keyboard_button touche;
+  MLV_create_window("jeu","icone du jeu",width,height);
+  Grille();
+   int x=(width/2)+15;
+   int y=(height/2)+15;
+   int vbe;
+   MLV_draw_filled_circle(x,y,10,MLV_COLOR_BLUE);
+   MLV_draw_filled_circle(x+30,y+30,10,MLV_COLOR_RED);
+   MLV_actualise_window();
+   do 
+   {
+     MLV_wait_keyboard(&touche, NULL, NULL);
+     vbe = 0;
+     if ((touche == MLV_KEYBOARD_d) || (touche == MLV_KEYBOARD_g) || (touche == MLV_KEYBOARD_b) || (touche == MLV_KEYBOARD_k))
+     {
+       if (touche == MLV_KEYBOARD_d)
+	   {
+	    
+	     if(x<width - 30)
+	       {
+		 x=x+30;
+	       }
+	     else
+	       {
+		 vbe = 1;
+	       }
+	   }
+       if  (touche == MLV_KEYBOARD_g)
+	   {
+	  
+	     if(x>=30)
+	       {
+		    x=x-30;
+	       }
+	     else
+	       {
+		 vbe = 1;
+	       }
+	     
+	   }
+       if (touche == MLV_KEYBOARD_b)
+	   {
+	       if (y<height - 30)
+		 {
+		    y=y+30;
+		 }
+	        else
+	       {
+		 vbe = 1;
+	       }
+	   }
+       if (touche == MLV_KEYBOARD_k)
+	   {
+	    
+	     if (y>=30)
+	       {
+		  y=y-30;
+	       }
+	      else
+	       {
+		 vbe = 1;
+	       }
+	   }
+       if (vbe == 0)
+	 { 
+       MLV_clear_window(MLV_COLOR_BLACK);
+       Grille();
+       MLV_draw_filled_circle(x,y,10,MLV_COLOR_BLUE);
+       MLV_actualise_window();
+	 }
+     }
+     
+ }while (touche != MLV_KEYBOARD_q);
+   MLV_wait_seconds(60);
+  
+}

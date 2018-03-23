@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This file is part of the MLV Library.
+Copyright (C) 2012 Adrien Boussicault, Marc Zipstein
+This Library is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+This Library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this Library.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>MLV-2.0.2</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="header">
+	<div class="headertitle">
+		<h1>Documentation de la bibliothèque MLV-2.0.2</h1>
+	</div>
+</div>
+<div class="tabs2">
+	<ul class="tablist">
+		<li><a href="index.html"><span>Presentation</span></a></li>
+		<li><a href="download.html"><span>Téléchargement</span></a></li>
+		<li><a href="installation.html"><span>Installation</span></a></li>
+		<li><a href="compilation.html"><span>Compilation</span></a></li>
+		<li><a href="examples.html"><span>Exemples</span></a></li>
+		<li><a href="files.html"><span>API</span></a></li>
+		<li><a href="globals_func.html"><span>Liste des fonctions</span></a></li>
+		<li><a href="bug.html"><span>bogues</span></a></li>
+        <li><a href="faq.html"><span>FAQ</span></a></li>
+		<li><a href="contact_auteur.html"><span>contacts</span></a></li>
+	</ul>
+</div>
+<!-- Généré par Doxygen 1.8.8 -->
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Liste des bogues </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><dl class="reflist">
+<dt><a class="anchor" id="_bug000013"></a>Global(e) <a class="el" href="MLV__path_8h_a07b9785e41a4abd019e7edc4a4d7ec31.html#a07b9785e41a4abd019e7edc4a4d7ec31">MLV_build_path</a>  (const char *first_element,...)</dt>
+<dd>Cette fonction ne fait que concaténer les differentes chaînes en mettant entre chaque chaîne un séparateur de répertoire compatible avec le système d'exploitation. Par contre, ce qui constitue le bug, il ne convertit pas chaque chaîne dans un format compatible avec celui du système d'exploitation. </dd>
+<dt><a class="anchor" id="_bug000016"></a>Global(e) <a class="el" href="MLV__window_8h_a39cabf9fc1bb2ca45670c8a429bade58.html#a39cabf9fc1bb2ca45670c8a429bade58">MLV_create_full_screen_window</a>  (const char *window_name, const char *icone_name, unsigned int width, unsigned int height)</dt>
+<dd>Même bogues que <a class="el" href="MLV__window_8h_a5f4ed8b1e1ac8ee176d08c3fc5dea1f1.html#a5f4ed8b1e1ac8ee176d08c3fc5dea1f1" title="Créé une fenêtre dont la taille, et les différents noms sont passés en paramètres. ">MLV_create_window()</a>. </dd>
+<dt><a class="anchor" id="_bug000017"></a>Global(e) <a class="el" href="MLV__window_8h_abb333e036a1b862b0a52e69cc9d9e0c6.html#abb333e036a1b862b0a52e69cc9d9e0c6">MLV_create_full_screen_window_with_default_font</a>  (const char *window_name, const char *icone_name, unsigned int width, unsigned int height, const char *path_to_font, unsigned int size_font)</dt>
+<dd>Même bogues que <a class="el" href="MLV__window_8h_a5f4ed8b1e1ac8ee176d08c3fc5dea1f1.html#a5f4ed8b1e1ac8ee176d08c3fc5dea1f1" title="Créé une fenêtre dont la taille, et les différents noms sont passés en paramètres. ">MLV_create_window()</a>. </dd>
+<dt><a class="anchor" id="_bug000014"></a>Global(e) <a class="el" href="MLV__window_8h_a5f4ed8b1e1ac8ee176d08c3fc5dea1f1.html#a5f4ed8b1e1ac8ee176d08c3fc5dea1f1">MLV_create_window</a>  (const char *window_name, const char *icone_name, unsigned int width, unsigned int height)</dt>
+<dd>BOGUES WINDOWS ET MACOSX UNIQUEMENT<br />
+<br />
+ Sous Windows uniquement, la fenêtre crée ne peut pas toujours être fermée à l'aide de la croix. En effet, la bibliothèque MLV implémente une fermeture automatique de la fenêtre lorsque l'utilisateur utilise la croix. Or, ce mécanisme utilise les threads SDL qui ne sont malheureusement pas bien supportés sous Windows et MacOSX.<br />
+<br />
+ En fait, la bibliothèque MLV utilise un second thread pour récuperer en permanance tous les évènements SDL de la pile et pour les traiter au fur et à mesure de leurs apparitions. OR, sous Windos et Mac OS X, comme les threads ne fonctionnent pas, la bibliothèque ne peux pas lire les évènements systèmes comme ceux de la fermeture de la fenêtre. Elle n'est donc plus informée de ce qui ce passe. Pour permettre à la bibliothèque de récupérer ces informations, il vous suffit de demander un évènement à l'aide de la fonction : <a class="el" href="MLV__event_8h_a8554615676f9a7d8e7b4ea4dce0b45af.html#a8554615676f9a7d8e7b4ea4dce0b45af" title="Cette fonction récupère un évènement dans la file d&#39;attente, remplit en fonction de l&#39;évènement récup...">MLV_get_event()</a>. Cela obligera la bibliothèque MLV à dépiler et à traiter tous les évènements SDL de la pile. Cela aura pour conséquence de traiter l'évènement système de la fermeture de la fenêtre. Dans l'implémentation des fonctions : <a class="el" href="MLV__keyboard_8h_a8ce4ab3f9c39d780ebbc68a6bd8c83c0.html#a8ce4ab3f9c39d780ebbc68a6bd8c83c0" title="Suspend l&#39;exécution jusqu&#39;à ce que l&#39;utilisateur appuie sur une touche du clavier. ">MLV_wait_keyboard()</a>, <a class="el" href="MLV__mouse_8h_a022eec5fd87217f91899a85642680aa3.html#a022eec5fd87217f91899a85642680aa3" title="Suspend l&#39;exécution jusqu&#39;à ce que l&#39;utilisateur clique sur le bouton gauche de la souris...">MLV_wait_mouse()</a>, etc ..., nous utilisons la fonction <a class="el" href="MLV__event_8h_a8554615676f9a7d8e7b4ea4dce0b45af.html#a8554615676f9a7d8e7b4ea4dce0b45af" title="Cette fonction récupère un évènement dans la file d&#39;attente, remplit en fonction de l&#39;évènement récup...">MLV_get_event()</a>. C'est pourquoi, la croix fonctionne correctement lorsque le programme est en attente d'une information provenant de l'utilisateur. </dd>
+<dt><a class="anchor" id="_bug000015"></a>Global(e) <a class="el" href="MLV__window_8h_a284db7dec8362f1e6561cddc87362508.html#a284db7dec8362f1e6561cddc87362508">MLV_create_window_with_default_font</a>  (const char *window_name, const char *icone_name, unsigned int width, unsigned int height, const char *path_to_font, unsigned int size_font)</dt>
+<dd>Même bogues que la fonction <a class="el" href="MLV__window_8h_a5f4ed8b1e1ac8ee176d08c3fc5dea1f1.html#a5f4ed8b1e1ac8ee176d08c3fc5dea1f1" title="Créé une fenêtre dont la taille, et les différents noms sont passés en paramètres. ">MLV_create_window()</a>. </dd>
+<dt><a class="anchor" id="_bug000001"></a>Global(e) <a class="el" href="MLV__event_8h_a8554615676f9a7d8e7b4ea4dce0b45af.html#a8554615676f9a7d8e7b4ea4dce0b45af">MLV_get_event</a>  (MLV_Keyboard_button *key_sym, MLV_Keyboard_modifier *key_mod, int *unicode, char **texte, MLV_Input_box **input_box, int *mouse_x, int *mouse_y, MLV_Mouse_button *mouse_button, MLV_Button_state *state)</dt>
+<dd><p class="startdd">Il est possible que la récuperation du caractère unicode sous Windows ne fonctionne pas bien. En effet, aucun code de portage spécifique n'a été fait à ce sujet.</p>
+<p class="enddd">Sous WINDOWS, le clavier est configuré en "qwerty". </p>
+</dd>
+<dt><a class="anchor" id="_bug000007"></a>Global(e) <a class="el" href="MLV__image_8h_ab4b52c36b4c824a9d0087fb9fae8d019.html#ab4b52c36b4c824a9d0087fb9fae8d019">MLV_load_image</a>  (const char *file_image)</dt>
+<dd><p class="startdd">Cette fonction provoque une erreur de segmentation si elle est utilisée avant <a class="el" href="MLV__window_8h_a5f4ed8b1e1ac8ee176d08c3fc5dea1f1.html#a5f4ed8b1e1ac8ee176d08c3fc5dea1f1" title="Créé une fenêtre dont la taille, et les différents noms sont passés en paramètres. ">MLV_create_window()</a>. Pour l'instant, nous vous conseillons d'utiliser cette fonction apres <a class="el" href="MLV__window_8h_a5f4ed8b1e1ac8ee176d08c3fc5dea1f1.html#a5f4ed8b1e1ac8ee176d08c3fc5dea1f1" title="Créé une fenêtre dont la taille, et les différents noms sont passés en paramètres. ">MLV_create_window()</a>.</p>
+<p>Il est possible que cette fonction n'arrive pas à charger correctement les images qui ne sont pas en 32 bits (RGBA) - bug à tester.</p>
+<p class="enddd">BUG PRESENT SOUS WINDOWS ET MACOS X : Lorsque la composante alpha d'un pixel est à 0, MLV_load_image met à 0 les composantes Rouge, Verte et bleue du pixel associé. Ce bug provient de la bibliothèque SDL_image. </p>
+</dd>
+<dt><a class="anchor" id="_bug000010"></a>Global(e) <a class="el" href="MLV__image_8h_a5fa4b81a3feae814bb47a2548df99c6f.html#a5fa4b81a3feae814bb47a2548df99c6f">MLV_save_image_as_bmp</a>  (const MLV_Image *image, const char *file_image)</dt>
+<dd>Cette fonction ne sauvegarde pas la composante alpha. </dd>
+<dt><a class="anchor" id="_bug000003"></a>Global(e) <a class="el" href="MLV__event_8h_aa9b746fa5175c222cc10472ceaf3dd4c.html#aa9b746fa5175c222cc10472ceaf3dd4c">MLV_wait_event</a>  (MLV_Keyboard_button *key_sym, MLV_Keyboard_modifier *key_mod, int *unicode, char **texte, MLV_Input_box **input_box, int *mouse_x, int *mouse_y, MLV_Mouse_button *mouse_button, MLV_Button_state *state)</dt>
+<dd>Voir les bugs de la fonction <a class="el" href="MLV__event_8h_a8554615676f9a7d8e7b4ea4dce0b45af.html#a8554615676f9a7d8e7b4ea4dce0b45af" title="Cette fonction récupère un évènement dans la file d&#39;attente, remplit en fonction de l&#39;évènement récup...">MLV_get_event()</a>. </dd>
+<dt><a class="anchor" id="_bug000004"></a>Global(e) <a class="el" href="MLV__event_8h_a60228fef576a75298cc649e333a5a686.html#a60228fef576a75298cc649e333a5a686">MLV_wait_event_or_seconds</a>  (MLV_Keyboard_button *key_sym, MLV_Keyboard_modifier *key_mod, int *unicode, char **texte, MLV_Input_box **input_box, int *mouse_x, int *mouse_y, MLV_Mouse_button *mouse_button, MLV_Button_state *state, int seconds)</dt>
+<dd>Voir les bugs de la fonction <a class="el" href="MLV__event_8h_a8554615676f9a7d8e7b4ea4dce0b45af.html#a8554615676f9a7d8e7b4ea4dce0b45af" title="Cette fonction récupère un évènement dans la file d&#39;attente, remplit en fonction de l&#39;évènement récup...">MLV_get_event()</a>. </dd>
+<dt><a class="anchor" id="_bug000011"></a>Global(e) <a class="el" href="MLV__keyboard_8h_a8ce4ab3f9c39d780ebbc68a6bd8c83c0.html#a8ce4ab3f9c39d780ebbc68a6bd8c83c0">MLV_wait_keyboard</a>  (MLV_Keyboard_button *sym, MLV_Keyboard_modifier *mod, int *unicode)</dt>
+<dd>Voir les bugs de la fonction <a class="el" href="MLV__event_8h_a8554615676f9a7d8e7b4ea4dce0b45af.html#a8554615676f9a7d8e7b4ea4dce0b45af" title="Cette fonction récupère un évènement dans la file d&#39;attente, remplit en fonction de l&#39;évènement récup...">MLV_get_event()</a>. </dd>
+<dt><a class="anchor" id="_bug000005"></a>Global(e) <a class="el" href="MLV__event_8h_a6047cce0c1b20bd14b6e7f346f06bc25.html#a6047cce0c1b20bd14b6e7f346f06bc25">MLV_wait_keyboard_or_mouse</a>  (MLV_Keyboard_button *sym, MLV_Keyboard_modifier *mod, int *unicode, int *mouse_x, int *mouse_y)</dt>
+<dd>Voir les bugs de la fonction <a class="el" href="MLV__event_8h_a8554615676f9a7d8e7b4ea4dce0b45af.html#a8554615676f9a7d8e7b4ea4dce0b45af" title="Cette fonction récupère un évènement dans la file d&#39;attente, remplit en fonction de l&#39;évènement récup...">MLV_get_event()</a>. </dd>
+<dt><a class="anchor" id="_bug000006"></a>Global(e) <a class="el" href="MLV__event_8h_a3210000155a05e7516c14d48f07b8356.html#a3210000155a05e7516c14d48f07b8356">MLV_wait_keyboard_or_mouse_or_seconds</a>  (MLV_Keyboard_button *sym, MLV_Keyboard_modifier *mod, int *unicode, int *mouse_x, int *mouse_y, int seconds)</dt>
+<dd>Voir les bugs de la fonction <a class="el" href="MLV__event_8h_a8554615676f9a7d8e7b4ea4dce0b45af.html#a8554615676f9a7d8e7b4ea4dce0b45af" title="Cette fonction récupère un évènement dans la file d&#39;attente, remplit en fonction de l&#39;évènement récup...">MLV_get_event()</a>. </dd>
+<dt><a class="anchor" id="_bug000012"></a>Global(e) <a class="el" href="MLV__keyboard_8h_a94c1a5e575d1c074f673b7729a345b25.html#a94c1a5e575d1c074f673b7729a345b25">MLV_wait_keyboard_or_seconds</a>  (MLV_Keyboard_button *sym, MLV_Keyboard_modifier *mod, int *unicode, int seconds)</dt>
+<dd>Voir les bugs de la fonction <a class="el" href="MLV__event_8h_a8554615676f9a7d8e7b4ea4dce0b45af.html#a8554615676f9a7d8e7b4ea4dce0b45af" title="Cette fonction récupère un évènement dans la file d&#39;attente, remplit en fonction de l&#39;évènement récup...">MLV_get_event()</a>.</dd>
+</dl>
+</div></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Vendredi 11 Septembre 2015 09:24:31 pour MLV-2.0.2 par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.8
+</small></address>
+</body>
+</html>

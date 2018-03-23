@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This file is part of the MLV Library.
+Copyright (C) 2012 Adrien Boussicault, Marc Zipstein
+This Library is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+This Library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this Library.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>MLV-2.0.2</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="header">
+	<div class="headertitle">
+		<h1>Documentation de la bibliothèque MLV-2.0.2</h1>
+	</div>
+</div>
+<div class="tabs2">
+	<ul class="tablist">
+		<li><a href="index.html"><span>Presentation</span></a></li>
+		<li><a href="download.html"><span>Téléchargement</span></a></li>
+		<li><a href="installation.html"><span>Installation</span></a></li>
+		<li><a href="compilation.html"><span>Compilation</span></a></li>
+		<li><a href="examples.html"><span>Exemples</span></a></li>
+		<li><a href="files.html"><span>API</span></a></li>
+		<li><a href="globals_func.html"><span>Liste des fonctions</span></a></li>
+		<li><a href="bug.html"><span>bogues</span></a></li>
+        <li><a href="faq.html"><span>FAQ</span></a></li>
+		<li><a href="contact_auteur.html"><span>contacts</span></a></li>
+	</ul>
+</div>
+<!-- Généré par Doxygen 1.8.8 -->
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">medium/11_keys_codes.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<p>Le but de ce programme est de donner un outil simple permettant d'obtenir rapidement les différents codes (sym et unicode) et les différents modes du clavier lorsque l'on appuie sur une touche du clavier.</p>
+<p>Le code source suivant ne constitue pas un tutoriel.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#ifndef _GNU_SOURCE</span></div>
+<div class="line"><span class="preprocessor">        #define _GNU_SOURCE</span></div>
+<div class="line"><span class="preprocessor">#endif</span></div>
+<div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"></div>
+<div class="line"><span class="preprocessor">#if defined( __WIN32__ ) || defined( _WIN32 ) || defined( __CYGWIN__ )</span></div>
+<div class="line"><span class="keyword">extern</span> <span class="keywordtype">int</span> asprintf (<span class="keywordtype">char</span> **, <span class="keyword">const</span> <span class="keywordtype">char</span> *, ...);</div>
+<div class="line"><span class="preprocessor">#endif</span></div>
+<div class="line"></div>
+<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="MLV__all_8h.html">MLV/MLV_all.h</a>&gt;</span></div>
+<div class="line"></div>
+<div class="line"><span class="keywordtype">void</span> draw_sentence( <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height ){</div>
+<div class="line">        <a name="a0"></a><a class="code" href="MLV__window_8h_ad42bb589177324a3addb6e8e9f7e3be0.html#ad42bb589177324a3addb6e8e9f7e3be0">MLV_clear_window</a>( <a name="a1"></a><a class="code" href="MLV__color_8h_a29fe7690a40e2aece216152e9e593763.html#a29fe7690a40e2aece216152e9e593763">MLV_COLOR_BLACK</a> );</div>
+<div class="line">        <a name="a2"></a><a class="code" href="MLV__text_8h_aee3fc4400ecf393501723aa5db89353b.html#aee3fc4400ecf393501723aa5db89353b">MLV_draw_adapted_text_box</a>(</div>
+<div class="line">                10, 50, </div>
+<div class="line">                <span class="stringliteral">&quot;Appuyez sur une touche pour connaître :\n    - son code,\n    - son mode,\n    - son code unicode,\n    - le caractère qui lui est associé.&quot;</span>,</div>
+<div class="line">                3,</div>
+<div class="line">                <a class="code" href="MLV__color_8h_a29fe7690a40e2aece216152e9e593763.html#a29fe7690a40e2aece216152e9e593763">MLV_COLOR_BLACK</a>, <a name="a3"></a><a class="code" href="MLV__color_8h_a15c3868b2cc0879653b2273278d4d9b6.html#a15c3868b2cc0879653b2273278d4d9b6">MLV_COLOR_GREEN</a>, <a class="code" href="MLV__color_8h_a29fe7690a40e2aece216152e9e593763.html#a29fe7690a40e2aece216152e9e593763">MLV_COLOR_BLACK</a>,</div>
+<div class="line">                <a name="a4"></a><a class="code" href="MLV__text_8h_a7cba3ac75855cbcbf11d35a83e819377.html#a7cba3ac75855cbcbf11d35a83e819377abfbe69089fcbe80dadbec634d7db191d">MLV_TEXT_LEFT</a></div>
+<div class="line">        );</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="comment">//</span></div>
+<div class="line"><span class="comment">// Attention ! </span></div>
+<div class="line"><span class="comment">// Pour pouvoir compiler ce programme sous windows et sous macintosh,</span></div>
+<div class="line"><span class="comment">// il faut, pour la déclaration du main, respecter strictement la syntaxe</span></div>
+<div class="line"><span class="comment">// suivante :</span></div>
+<div class="line"><span class="comment">//</span></div>
+<div class="line"><span class="keywordtype">int</span> main( <span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[] ){</div>
+<div class="line"></div>
+<div class="line">        <span class="keywordtype">int</span> width = 640;</div>
+<div class="line">        <span class="keywordtype">int</span> height = 480;</div>
+<div class="line"></div>
+<div class="line">        <a name="a5"></a><a class="code" href="MLV__window_8h_a5f4ed8b1e1ac8ee176d08c3fc5dea1f1.html#a5f4ed8b1e1ac8ee176d08c3fc5dea1f1">MLV_create_window</a>( <span class="stringliteral">&quot;beginner - 10 - Le code des touches du clavier&quot;</span>, <span class="stringliteral">&quot;codes - touches du clavier&quot;</span>, width, height );</div>
+<div class="line"></div>
+<div class="line">        draw_sentence( width, height );</div>
+<div class="line">        <a name="a6"></a><a class="code" href="MLV__window_8h_a989a543c725ea5278334e5642c53c837.html#a989a543c725ea5278334e5642c53c837">MLV_actualise_window</a>();</div>
+<div class="line"></div>
+<div class="line">        <a class="code" href="MLV__keyboard_8h.html#a216eb844b6a872c8cdf1a2923e7b72b3">MLV_Keyboard_button</a> sym;</div>
+<div class="line">        <span class="keyword">const</span> <span class="keywordtype">char</span>* sym_string;</div>
+<div class="line">        <a class="code" href="MLV__keyboard_8h.html#ae679aa50e1df531008a239fdde77b347">MLV_Keyboard_modifier</a> mod;</div>
+<div class="line">        <span class="keywordtype">char</span>* mod_string;</div>
+<div class="line">        <span class="keywordtype">int</span> unicode;</div>
+<div class="line">        <span class="keywordtype">char</span>* character;</div>
+<div class="line">        <span class="keywordtype">char</span>* text;</div>
+<div class="line"></div>
+<div class="line">        <span class="keywordflow">while</span>( 1 ){</div>
+<div class="line">                <a name="a7"></a><a class="code" href="MLV__keyboard_8h_a8ce4ab3f9c39d780ebbc68a6bd8c83c0.html#a8ce4ab3f9c39d780ebbc68a6bd8c83c0">MLV_wait_keyboard</a>( &amp;sym, &amp;mod, &amp;unicode );</div>
+<div class="line">                sym_string = <a name="a8"></a><a class="code" href="MLV__keyboard_8h_a959f08bd169cb83f3e24f169cf94cbf4.html#a959f08bd169cb83f3e24f169cf94cbf4">MLV_convert_keyboard_button_to_string</a>( sym );</div>
+<div class="line">                mod_string = <a name="a9"></a><a class="code" href="MLV__keyboard_8h_a86ebf813ea04874b700160e922240053.html#a86ebf813ea04874b700160e922240053">MLV_convert_keyboard_mod_to_string</a>( mod );</div>
+<div class="line">                character = <a name="a10"></a><a class="code" href="MLV__text_8h_a13d59ac3bd2b781f4e95de05b0602397.html#a13d59ac3bd2b781f4e95de05b0602397">MLV_convert_unicode_to_string</a>( unicode );</div>
+<div class="line"></div>
+<div class="line">                <span class="keywordflow">if</span>(</div>
+<div class="line">                        asprintf(</div>
+<div class="line">                                &amp;text, </div>
+<div class="line">                                <span class="stringliteral">&quot;Information sur la touche:\n-------------------------\nSym : %s \nMod : %s \nUnicode : %d \nCaractère : %s \n\n&quot;</span>,</div>
+<div class="line">                                sym_string, mod_string, unicode, character</div>
+<div class="line">                        ) == -1</div>
+<div class="line">                ){</div>
+<div class="line">                        fprintf( stderr, <span class="stringliteral">&quot;Allocation Error - file : %s, line : %d \n&quot;</span>, __FILE__, __LINE__);</div>
+<div class="line">                        exit(1);</div>
+<div class="line">                };</div>
+<div class="line"></div>
+<div class="line">                printf( <span class="stringliteral">&quot;%s&quot;</span>, text );</div>
+<div class="line"></div>
+<div class="line">                draw_sentence( width, height );</div>
+<div class="line">                <a class="code" href="MLV__text_8h_aee3fc4400ecf393501723aa5db89353b.html#aee3fc4400ecf393501723aa5db89353b">MLV_draw_adapted_text_box</a>(</div>
+<div class="line">                        10, 160, text, 6,</div>
+<div class="line">                        <a class="code" href="MLV__color_8h_a29fe7690a40e2aece216152e9e593763.html#a29fe7690a40e2aece216152e9e593763">MLV_COLOR_BLACK</a>, <a class="code" href="MLV__color_8h_a15c3868b2cc0879653b2273278d4d9b6.html#a15c3868b2cc0879653b2273278d4d9b6">MLV_COLOR_GREEN</a>, <a class="code" href="MLV__color_8h_a29fe7690a40e2aece216152e9e593763.html#a29fe7690a40e2aece216152e9e593763">MLV_COLOR_BLACK</a>,</div>
+<div class="line">                        <a class="code" href="MLV__text_8h_a7cba3ac75855cbcbf11d35a83e819377.html#a7cba3ac75855cbcbf11d35a83e819377abfbe69089fcbe80dadbec634d7db191d">MLV_TEXT_LEFT</a></div>
+<div class="line">                );</div>
+<div class="line">                <a class="code" href="MLV__window_8h_a989a543c725ea5278334e5642c53c837.html#a989a543c725ea5278334e5642c53c837">MLV_actualise_window</a>();</div>
+<div class="line"></div>
+<div class="line">                free( character );</div>
+<div class="line">                free( mod_string );</div>
+<div class="line">                free( text );</div>
+<div class="line">        </div>
+<div class="line">        }</div>
+<div class="line"></div>
+<div class="line">        <a name="a11"></a><a class="code" href="MLV__window_8h_a139eec0093ed1ced7f49b0f35a5b65e5.html#a139eec0093ed1ced7f49b0f35a5b65e5">MLV_free_window</a>();</div>
+<div class="line"></div>
+<div class="line">        <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="comment">/*</span></div>
+<div class="line"><span class="comment"> *   This file is part of the MLV Library.</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> *   Copyright (C) 2010-2014 Adrien Boussicault, Marc Zipstein</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> *    This Library is free software: you can redistribute it and/or modify</span></div>
+<div class="line"><span class="comment"> *    it under the terms of the GNU General Public License as published by</span></div>
+<div class="line"><span class="comment"> *    the Free Software Foundation, either version 3 of the License, or</span></div>
+<div class="line"><span class="comment"> *    (at your option) any later version.</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> *    This Library is distributed in the hope that it will be useful,</span></div>
+<div class="line"><span class="comment"> *    but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><span class="comment"> *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><span class="comment"> *    GNU General Public License for more details.</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> *    You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><span class="comment"> *    along with this Library.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+</div><!-- fragment --> </div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Vendredi 11 Septembre 2015 09:24:29 pour MLV-2.0.2 par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.8
+</small></address>
+</body>
+</html>

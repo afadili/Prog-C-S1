@@ -1,0 +1,207 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MAXNOTES 4
+ 
+typedef struct Date
+{
+  int jour;
+  char mois[10];
+  int annee;
+} Date;
+  
+typedef struct Fiche
+{
+  char nom[20];
+  char prenom[20];
+  Date dateDeNaissance ;
+  float notes[MAXNOTES];
+  int nbNotes;
+} Fiche ;
+
+typedef struct
+{
+  Fiche *fiches;
+  int taille;
+  int capacite;
+} Classe;
+
+/* fonction initialiseClasse */
+int initialiseClasse(Classe *classe)
+{
+  int capacite,taille;
+  Fiche *tmp;
+  printf("veuillez entrer la taille et la capacité:\n");
+  scanf("%d %d",&capacite,&taille);
+  tmp=malloc(capacite*sizeof(Fiche));
+  if(tmp==NULL)
+    return 0;
+  classe->taille=taille;
+  (*classe).capacite=capacite;
+  (*classe).fiches=tmp;
+  return 1;
+}
+
+ /* fonction dejaPresente */
+int dejaPresente(Classe classe, Fiche fiche)
+{
+  int i;
+  for (i=0;i<classe.taille;i++)
+    {
+      if (strcmp(classe.fiches[i].nom,fiche.nom)==0 && strcmp(classe.fiches[i].prenom,fiche.prenom)==0)
+	return 1;
+    }
+  return 0;
+}
+/* fonction LireClasse */
+int LireClasse(Classe *classe)
+{
+  if (initialiseClasse(classe)==0)
+    return 0;
+  else
+    {
+      int i=0;
+      Fiche *tmp;
+      while (i<(classe->taille))
+	{
+	  lireFiche(tmp);
+	  if (!dejaPresente(*classe,*tmp))/* il fait du sur place tant que la fiche est deja présente*/
+	    {
+	      (classe->fiches)[i]=*tmp;
+	      i++;
+	    }
+	}
+    }
+   return 1;
+}
+
+/* fonction ecrireClasse */
+void ecrireClasse(Classe *classe)
+{
+  int i=0;
+  while (i<classe->taille)
+    {
+      ecrireFiche(classe->fiches);
+    }
+  printf("\n");
+}
+
+/* fonction ajouterFiche */
+int ajouterFiche(Classe *classe, Fiche fiche)
+{
+  if ((dejaPresente(*classe,fiche)==1))
+    return 0;
+  if ((classe->taille)==(classe->capacite))
+    {
+      Fiche *tmp=realloc(classe->fiches,((classe->capacite+3)*sizeof(Fiche)));
+      if (tmp==NULL)
+	return 0;
+      classe->fiches=tmp;
+    }
+  (classe->fiches)[classe->taille]=fiche;
+  classe->taille++;
+  classe->capacite+3;
+}
+
+/* fonction supprimerFiche */
+int supprimerFiche(Classe *classe, Fiche fiche)
+{
+  int i=0;
+  while(i<classe->taille)
+    if (strcmp((classe->fiches)[i].nom,fiche.nom)==0 && strcmp ((classe->fiches)[i].prenom,fiche.prenom)==0)
+      break;
+  i++;
+  if (i==classe->taille)
+    return 0;
+  int j;
+  for (j=i;j<classe->taille;j++)
+    (classe->fiches)[j]=(classe->fiches)[j+1];
+  classe->taille--;
+  return 1;
+}
+
+  
+/*fonction ecrireDate */
+void ecrireDate(Date date)
+{
+  printf("%d %s %d\n",date.jour,date.mois,date.annee);
+  }
+
+/*fonction lireDate */
+void lireDate(Date *date)
+{
+  scanf("%d",&(date->jour));
+  scanf("%s",date->mois);
+  scanf("%d",&(date->annee));
+}
+
+/* fonction LireFiche */
+void lireFiche(Fiche *fiche)
+{
+  scanf("%s",fiche->nom);
+  scanf("%s",fiche->prenom);
+  lireDate(&(fiche->dateDeNaissance));
+  fiche->nbNotes=0;
+}
+/* fonction ajoutNote */
+void ajoutNote(int i, Fiche *fiche)
+{
+  printf("veuillez saisir une note :");
+  scanf("%f",&(*fiche).notes[i]);
+  printf("------suite--------\n");
+}
+
+void saisirnotes(Fiche *fiche)
+{
+  printf("veuillez sasir le nombre de notes :");                                         
+  scanf("%d",&(fiche->nbNotes));
+  printf(" >>>>>>> ------------- %d  notes ?\n",fiche->nbNotes);
+    if (fiche->nbNotes >0 && fiche->nbNotes <= MAXNOTES)
+      {	
+	int i;
+	for (i=0;i<(fiche->nbNotes);i++)
+	  {
+	    ajoutNote(i,fiche);
+	  }
+      }
+}
+
+/* fonction ecrireFiche*/
+void ecrireFiche(Fiche fiche)
+{
+  int i;
+  printf("Nom : %s\n",fiche.nom);
+  printf("Prenom : %s\n",fiche.prenom);
+  printf("Date de naissance : ");
+  ecrireDate(fiche.dateDeNaissance);
+  printf("nombre de notes : %d\n",(fiche.nbNotes));
+  if (fiche.nbNotes>0)
+    {
+      for (i=0;i<(fiche.nbNotes);i++)
+	{
+	  printf("Notes : %.2f\n",fiche.notes[i]);
+	}
+    }
+  else
+    {
+      printf("Notes : aucune note \n");
+    }
+}
+
+ int main ()
+  {
+    
+    Date naissance;
+    Fiche fiche1;
+    printf("veuillez entrer une date : \n");
+    lireDate(&naissance);
+    printf("Voici la date que vous avez saisi :\n");
+    ecrireDate(naissance);
+    printf("veuillez entrer votre nom, prenom, date de naissance :\n");
+    lireFiche(&fiche1);
+    printf("---------------------------------saisie de notes------------------------------\n");
+    saisirnotes(&fiche1);
+    printf("Voici votre fiche :\n");
+    printf("------ debut ----------------\n");
+    ecrireFiche(fiche1);
+    printf("------ fin ----------------\n");
+  }

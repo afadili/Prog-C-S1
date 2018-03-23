@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+This file is part of the MLV Library.
+Copyright (C) 2012 Adrien Boussicault, Marc Zipstein
+This Library is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+This Library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this Library.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>MLV-2.0.2</title>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="header">
+	<div class="headertitle">
+		<h1>Documentation de la bibliothèque MLV-2.0.2</h1>
+	</div>
+</div>
+<div class="tabs2">
+	<ul class="tablist">
+		<li><a href="index.html"><span>Presentation</span></a></li>
+		<li><a href="download.html"><span>Téléchargement</span></a></li>
+		<li><a href="installation.html"><span>Installation</span></a></li>
+		<li><a href="compilation.html"><span>Compilation</span></a></li>
+		<li><a href="examples.html"><span>Exemples</span></a></li>
+		<li><a href="files.html"><span>API</span></a></li>
+		<li><a href="globals_func.html"><span>Liste des fonctions</span></a></li>
+		<li><a href="bug.html"><span>bogues</span></a></li>
+        <li><a href="faq.html"><span>FAQ</span></a></li>
+		<li><a href="contact_auteur.html"><span>contacts</span></a></li>
+	</ul>
+</div>
+<!-- Généré par Doxygen 1.8.8 -->
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">advanced/09_animation.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<p>A ECRIRE</p>
+<div class="fragment"><div class="line"></div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="MLV__all_8h.html">MLV/MLV_all.h</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"></div>
+<div class="line"><span class="comment">//</span></div>
+<div class="line"><span class="comment">// Attention ! </span></div>
+<div class="line"><span class="comment">// Pour pouvoir compiler ce programme sous windows et sous macintosh,</span></div>
+<div class="line"><span class="comment">// il faut, pour la déclaration du main, respecter strictement la syntaxe</span></div>
+<div class="line"><span class="comment">// suivante :</span></div>
+<div class="line"><span class="comment">//</span></div>
+<div class="line"><span class="keywordtype">int</span> main( <span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[] ){</div>
+<div class="line">        <span class="keywordtype">int</span> width = 640, height = 480;</div>
+<div class="line"></div>
+<div class="line">        <a name="a0"></a><a class="code" href="MLV__audio_8h_a4dc9290589b441534358f31f777f47c7.html#a4dc9290589b441534358f31f777f47c7">MLV_init_audio</a>();</div>
+<div class="line">        <a name="a1"></a><a class="code" href="MLV__window_8h_a5f4ed8b1e1ac8ee176d08c3fc5dea1f1.html#a5f4ed8b1e1ac8ee176d08c3fc5dea1f1">MLV_create_window</a>( <span class="stringliteral">&quot;advanced - 9 animation&quot;</span>, <span class="stringliteral">&quot;animation&quot;</span>, width, height );</div>
+<div class="line"></div>
+<div class="line">        <span class="comment">// On charge les données multimédias en mémoire</span></div>
+<div class="line">        <span class="keyword">const</span> <span class="keywordtype">char</span>* file_path_of_creature = <span class="stringliteral">&quot;creature.png&quot;</span>;</div>
+<div class="line">        <a class="code" href="MLV__image_8h_a652f0ebbbec1ceb685a9d47e8a1df414.html#a652f0ebbbec1ceb685a9d47e8a1df414">MLV_Image</a>* creature = <a name="a2"></a><a class="code" href="MLV__image_8h_ab4b52c36b4c824a9d0087fb9fae8d019.html#ab4b52c36b4c824a9d0087fb9fae8d019">MLV_load_image</a>( file_path_of_creature );</div>
+<div class="line">        <span class="keywordflow">if</span>( ! creature ){</div>
+<div class="line">                fprintf(</div>
+<div class="line">                        stderr, <span class="stringliteral">&quot;It was impossible to load the file %s.\n&quot;</span>,</div>
+<div class="line">                        file_path_of_creature</div>
+<div class="line">                );</div>
+<div class="line">                exit(1);</div>
+<div class="line">        }</div>
+<div class="line">        <span class="keyword">const</span> <span class="keywordtype">char</span>* file_path_of_sound = <span class="stringliteral">&quot;walk.ogg&quot;</span>;</div>
+<div class="line">        <a class="code" href="MLV__audio_8h.html#a1f1dcb3e422bf7ae8fb84fd2be75e1c5">MLV_Sound</a>* sound = <a name="a3"></a><a class="code" href="MLV__audio_8h_a73b9c92c212751e969aa79496c6bd75f.html#a73b9c92c212751e969aa79496c6bd75f">MLV_load_sound</a>( file_path_of_sound );</div>
+<div class="line">        <span class="keywordflow">if</span>( ! sound ){</div>
+<div class="line">                fprintf(</div>
+<div class="line">                        stderr, <span class="stringliteral">&quot;It was impossible to load the file %s.\n&quot;</span>,</div>
+<div class="line">                        file_path_of_sound</div>
+<div class="line">                );</div>
+<div class="line">                exit(1);</div>
+<div class="line">        }</div>
+<div class="line"></div>
+<div class="line">        <span class="comment">// On construit une animation avec les donnée multimédias</span></div>
+<div class="line">        <span class="comment">// précédement chargées.</span></div>
+<div class="line">        <a class="code" href="MLV__animation_8h_a27d169bf2a8d3ae5d575a8d51241070a.html#a27d169bf2a8d3ae5d575a8d51241070a">MLV_Animation</a>* animation;</div>
+<div class="line">        <span class="keywordtype">int</span> nb_frames = 6;</div>
+<div class="line">        <span class="keywordtype">int</span> nb_layers = 1;</div>
+<div class="line">        <span class="keywordtype">int</span> nb_channels = 1;</div>
+<div class="line">        <span class="keywordtype">int</span> w = 79, h = 79;</div>
+<div class="line"></div>
+<div class="line">        <a class="code" href="MLV__image_8h_a652f0ebbbec1ceb685a9d47e8a1df414.html#a652f0ebbbec1ceb685a9d47e8a1df414">MLV_Image</a>* images[4];</div>
+<div class="line">        images[0] = <a name="a4"></a><a class="code" href="MLV__image_8h_ae26f25f6f8c0e6b573ba2f73f8114e86.html#ae26f25f6f8c0e6b573ba2f73f8114e86">MLV_copy_partial_image</a>( creature, 0, 0, w, h );</div>
+<div class="line">        images[1] = <a class="code" href="MLV__image_8h_ae26f25f6f8c0e6b573ba2f73f8114e86.html#ae26f25f6f8c0e6b573ba2f73f8114e86">MLV_copy_partial_image</a>( creature, 1*(w+1), 0, w, h );</div>
+<div class="line">        images[2] = <a class="code" href="MLV__image_8h_ae26f25f6f8c0e6b573ba2f73f8114e86.html#ae26f25f6f8c0e6b573ba2f73f8114e86">MLV_copy_partial_image</a>( creature, 2*(w+1), 0, w, h );</div>
+<div class="line">        images[3] = <a class="code" href="MLV__image_8h_ae26f25f6f8c0e6b573ba2f73f8114e86.html#ae26f25f6f8c0e6b573ba2f73f8114e86">MLV_copy_partial_image</a>( creature, 3*(w+1), 0, w, h );</div>
+<div class="line"></div>
+<div class="line">        animation       = <a name="a5"></a><a class="code" href="MLV__animation_8h_a976e5e446a80519e3119d42c9f75301d.html#a976e5e446a80519e3119d42c9f75301d">MLV_create_animation</a>(</div>
+<div class="line">                nb_frames, nb_layers, nb_channels</div>
+<div class="line">        );</div>
+<div class="line"></div>
+<div class="line">        <span class="keywordtype">int</span> layer = 0;</div>
+<div class="line">        <a name="a6"></a><a class="code" href="MLV__animation_8h_a68ee18ba19cea33e4ef0b5287fbb801f.html#a68ee18ba19cea33e4ef0b5287fbb801f">MLV_add_frame_in_animation</a>( </div>
+<div class="line">                images+0, &amp;sound, 4, animation</div>
+<div class="line">        );</div>
+<div class="line">        <a class="code" href="MLV__animation_8h_a68ee18ba19cea33e4ef0b5287fbb801f.html#a68ee18ba19cea33e4ef0b5287fbb801f">MLV_add_frame_in_animation</a>(</div>
+<div class="line">                images+1, NULL, 4, animation</div>
+<div class="line">        );</div>
+<div class="line">        <a class="code" href="MLV__animation_8h_a68ee18ba19cea33e4ef0b5287fbb801f.html#a68ee18ba19cea33e4ef0b5287fbb801f">MLV_add_frame_in_animation</a>(</div>
+<div class="line">                images+2, &amp;sound, 4, animation</div>
+<div class="line">        );</div>
+<div class="line">        <a class="code" href="MLV__animation_8h_a68ee18ba19cea33e4ef0b5287fbb801f.html#a68ee18ba19cea33e4ef0b5287fbb801f">MLV_add_frame_in_animation</a>(</div>
+<div class="line">                images+3, NULL, 4, animation</div>
+<div class="line">        );</div>
+<div class="line"></div>
+<div class="line">        <span class="comment">// Création d&#39;un lecteur d&#39;animation</span></div>
+<div class="line">        <a class="code" href="MLV__animation_8h_a48081cf89db68070bc30e8dab75d076b.html#a48081cf89db68070bc30e8dab75d076b">MLV_Animation_player</a>* animation_player = <a name="a7"></a><a class="code" href="MLV__animation_8h_ac9d1ef90eec5c37bd31948623129f4e4.html#ac9d1ef90eec5c37bd31948623129f4e4">MLV_create_animation_player</a>( animation );</div>
+<div class="line"></div>
+<div class="line">        <span class="comment">// On lance la lecture de l&#39;animation</span></div>
+<div class="line">        <a name="a8"></a><a class="code" href="MLV__animation_8h_a07ea3d69752696d5b9bf93b7fa6b4019.html#a07ea3d69752696d5b9bf93b7fa6b4019">MLV_play_animation_player</a>( animation_player );</div>
+<div class="line"></div>
+<div class="line">        <span class="comment">// On active le son</span></div>
+<div class="line">        <a name="a9"></a><a class="code" href="MLV__animation_8h_ad674e15d1e0e6940aa41ebc5edfdd360.html#ad674e15d1e0e6940aa41ebc5edfdd360">MLV_turn_on_sound_of_animation_player</a>( animation_player, 0 );</div>
+<div class="line">        <a name="a10"></a><a class="code" href="MLV__animation_8h_abd1dcc0873324de9023177862f5fec15.html#abd1dcc0873324de9023177862f5fec15">MLV_change_sound_volume_of_animation_player</a>( animation_player, 0, 0.2 );</div>
+<div class="line"></div>
+<div class="line">        <span class="comment">// On fice le nombre d&#39;image par seconde</span></div>
+<div class="line">        <a name="a11"></a><a class="code" href="MLV__time_8h_adc95b099576765ca8bb25315a8485114.html#adc95b099576765ca8bb25315a8485114">MLV_change_frame_rate</a>( 24 );</div>
+<div class="line"></div>
+<div class="line">        <span class="keywordtype">int</span> avance = 0;</div>
+<div class="line">        <span class="keywordtype">int</span> pas = 4;</div>
+<div class="line">        <a class="code" href="MLV__keyboard_8h.html#a216eb844b6a872c8cdf1a2923e7b72b3">MLV_Keyboard_button</a> touche;</div>
+<div class="line">        <span class="keywordflow">while</span>( </div>
+<div class="line">                <a name="a12"></a><a class="code" href="MLV__event_8h_a8554615676f9a7d8e7b4ea4dce0b45af.html#a8554615676f9a7d8e7b4ea4dce0b45af">MLV_get_event</a> (</div>
+<div class="line">                        &amp;touche, NULL, NULL,</div>
+<div class="line">                        NULL, NULL,</div>
+<div class="line">                        NULL, NULL, NULL,</div>
+<div class="line">                        NULL</div>
+<div class="line">                ) == <a name="a13"></a><a class="code" href="MLV__event_8h_af64dc232a74822e578b95511322b32eb.html#af64dc232a74822e578b95511322b32ebadff7c2f42a75aa420f3c7fb0a7021fd1">MLV_NONE</a> ||</div>
+<div class="line">                touche != MLV_KEYBOARD_ESCAPE</div>
+<div class="line">        ){</div>
+<div class="line">                <a name="a14"></a><a class="code" href="MLV__animation_8h_ab4d908f32267cca3ea30495fc139eb63.html#ab4d908f32267cca3ea30495fc139eb63">MLV_update_animation_player</a>( animation_player );</div>
+<div class="line"></div>
+<div class="line">                <a name="a15"></a><a class="code" href="MLV__window_8h_ad42bb589177324a3addb6e8e9f7e3be0.html#ad42bb589177324a3addb6e8e9f7e3be0">MLV_clear_window</a>( <a name="a16"></a><a class="code" href="MLV__color_8h_a1541fede5422da8d19c4cc251b0c5834.html#a1541fede5422da8d19c4cc251b0c5834">MLV_COLOR_BROWN</a> );</div>
+<div class="line">                <a name="a17"></a><a class="code" href="MLV__shape_8h_aa3a9e521df9e4994ddd9a1200b1434e5.html#aa3a9e521df9e4994ddd9a1200b1434e5">MLV_draw_filled_rectangle</a>(</div>
+<div class="line">                        width/2,0, width/2, height, <a name="a18"></a><a class="code" href="MLV__color_8h_a885f5ec3c366c86f500576a438f2e9d7.html#a885f5ec3c366c86f500576a438f2e9d7">MLV_COLOR_YELLOW</a></div>
+<div class="line">                );</div>
+<div class="line">                avance += pas;</div>
+<div class="line">                <span class="keywordflow">if</span>( avance &gt; width-w ){</div>
+<div class="line">                        <a name="a19"></a><a class="code" href="MLV__animation_8h_a667cb348a59600fca3389c46fcb54fd2.html#a667cb348a59600fca3389c46fcb54fd2">MLV_play_revert_animation_player</a>( animation_player );</div>
+<div class="line">                        pas = -pas;</div>
+<div class="line">                }</div>
+<div class="line">                <span class="keywordflow">if</span>( avance &lt; 0 ){</div>
+<div class="line">                        <a class="code" href="MLV__animation_8h_a07ea3d69752696d5b9bf93b7fa6b4019.html#a07ea3d69752696d5b9bf93b7fa6b4019">MLV_play_animation_player</a>( animation_player );</div>
+<div class="line">                        pas = -pas;</div>
+<div class="line">                }</div>
+<div class="line">                <span class="keywordtype">int</span> position_y = 20;</div>
+<div class="line">                <a name="a20"></a><a class="code" href="MLV__animation_8h_ae8a8f251391ee5ff0ee4fea1bebcfe30.html#ae8a8f251391ee5ff0ee4fea1bebcfe30">MLV_draw_image_from_animation_player</a>( animation_player, layer, avance, position_y );</div>
+<div class="line">                <a name="a21"></a><a class="code" href="MLV__window_8h_a989a543c725ea5278334e5642c53c837.html#a989a543c725ea5278334e5642c53c837">MLV_actualise_window</a>();</div>
+<div class="line">                <a name="a22"></a><a class="code" href="MLV__animation_8h_a38591bef4ab0c564f5738ac227713a09.html#a38591bef4ab0c564f5738ac227713a09">MLV_play_sound_from_animation_player</a>( animation_player, 0 );</div>
+<div class="line">                <a name="a23"></a><a class="code" href="MLV__time_8h.html#a06aeb1975d13c11e5cd06cb5cc1d521d">MLV_delay_according_to_frame_rate</a>();</div>
+<div class="line">        }</div>
+<div class="line"></div>
+<div class="line">        <a name="a24"></a><a class="code" href="MLV__animation_8h_a26f65ce7e53df8f46786998e0f410f3a.html#a26f65ce7e53df8f46786998e0f410f3a">MLV_free_animation_player</a>( animation_player );</div>
+<div class="line"></div>
+<div class="line">        <a name="a25"></a><a class="code" href="MLV__animation_8h_a475b7344f2f56841106b3e16f179727f.html#a475b7344f2f56841106b3e16f179727f">MLV_free_animation</a>( animation );</div>
+<div class="line"></div>
+<div class="line">        <a name="a26"></a><a class="code" href="MLV__image_8h_a895dadac9951d7c83e41e642255bce78.html#a895dadac9951d7c83e41e642255bce78">MLV_free_image</a>( images[0] );</div>
+<div class="line">        <a class="code" href="MLV__image_8h_a895dadac9951d7c83e41e642255bce78.html#a895dadac9951d7c83e41e642255bce78">MLV_free_image</a>( images[1] );</div>
+<div class="line">        <a class="code" href="MLV__image_8h_a895dadac9951d7c83e41e642255bce78.html#a895dadac9951d7c83e41e642255bce78">MLV_free_image</a>( images[2] );</div>
+<div class="line">        <a class="code" href="MLV__image_8h_a895dadac9951d7c83e41e642255bce78.html#a895dadac9951d7c83e41e642255bce78">MLV_free_image</a>( images[3] );</div>
+<div class="line"></div>
+<div class="line">        <a class="code" href="MLV__image_8h_a895dadac9951d7c83e41e642255bce78.html#a895dadac9951d7c83e41e642255bce78">MLV_free_image</a>( creature );</div>
+<div class="line"></div>
+<div class="line">        <a name="a27"></a><a class="code" href="MLV__window_8h_a139eec0093ed1ced7f49b0f35a5b65e5.html#a139eec0093ed1ced7f49b0f35a5b65e5">MLV_free_window</a>();</div>
+<div class="line">        <a name="a28"></a><a class="code" href="MLV__audio_8h.html#abc207de0a92452024cf93a703efca43a">MLV_free_audio</a>();</div>
+<div class="line"></div>
+<div class="line">        <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"></div>
+<div class="line"><span class="comment">/*</span></div>
+<div class="line"><span class="comment"> *   This file is part of the MLV Library.</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> *   Copyright (C) 2010,2011,2012,2013 Adrien Boussicault, Marc Zipstein</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> *    This Library is free software: you can redistribute it and/or modify</span></div>
+<div class="line"><span class="comment"> *    it under the terms of the GNU General Public License as published by</span></div>
+<div class="line"><span class="comment"> *    the Free Software Foundation, either version 3 of the License, or</span></div>
+<div class="line"><span class="comment"> *    (at your option) any later version.</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> *    This Library is distributed in the hope that it will be useful,</span></div>
+<div class="line"><span class="comment"> *    but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><span class="comment"> *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><span class="comment"> *    GNU General Public License for more details.</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> *    You should have received a copy of the GNU General Public License</span></div>
+<div class="line"><span class="comment"> *    along with this Library.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+</div><!-- fragment --> </div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Vendredi 11 Septembre 2015 09:24:29 pour MLV-2.0.2 par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.8
+</small></address>
+</body>
+</html>

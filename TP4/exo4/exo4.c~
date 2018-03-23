@@ -1,0 +1,19 @@
+#include<stdio.h>
+
+int quotientEtReste(int a,int b);
+
+int main(){
+    int dividende, diviseur, quotien, reste;
+    printf("veuillez entrer le dividende :");
+    scanf("%d\n",&dividende);
+    printf("veuillez entrer le diviseur :");
+    scanf("%d\n",&diviseur);
+    quotientEtReste(dividende, diviseur);
+}
+
+
+int quotientEtReste(int a, int b){
+    int quotient, 
+    quotient = a/b;
+    reste = a%b;
+}
